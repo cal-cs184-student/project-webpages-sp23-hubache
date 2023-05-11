@@ -1,7 +1,107 @@
-<html>
-	<head>
-	</head>
-	<body>
-		Project 3-2 here
-	</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Your Name  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle">Assignment 3-2: Additional Features to PathTracer</h1>
+    <h2 align="middle">Your Name</h2>
+    <h2 align="middle">(Webpage URL)</h2>
+
+    <div class="padded">
+
+        
+        * NOTE: For this project, you will choose TWO out of the four given parts to complete. One of those parts must be Part 1 or Part 2. In other words, you can choose any combination of two parts except the pair (Part 3, Part 4).
+
+
+        <h3 align="middle">Part 2. Microfacet Material</h3>
+        <p><b>
+            Show a screenshot sequence of 4 images of scene `CBdragon_microfacet_au.dae` rendered with $\alpha$ set to 0.005, 0.05, 0.25 and 0.5. The other settings should be at least 128 samples per pixel and 1 samples per light. The number of bounces should be at least 5. Describe the differences between different images. Note that, to change the $\alpha$, just open the .dae file and search for `microfacet`.
+        </b></p>
+        <img src="images/alpha005.png"  alt="bunny rendered with alpha = 0.005">
+        <img src="images/alpha05.png"  alt="bunny rendered with alpha = 0.05">
+        <img src="images/alpha25.png"  alt="bunny rendered with alpha = 0.25">
+        <img src="images/alpha5.png"  alt="bunny rendered with alpha = 0.5">
+
+        <p>
+            As alpha increases, the dragon's specularities have less contrast and less noise. Note that for the lowest alpha values, white specks of noise appear on the dragon more frequently. This is caused by the light reflection from the low alpha value. Overall, the dragons with the low alpha values have an extremely shiny texture, where as the higher values are more smooth, almost brushed.
+        </p>
+        <br>
+        <p><b>
+            Show two images of scene `CBbunny_microfacet_cu.dae` rendered using cosine hemisphere sampling (default) and your importance sampling. The sampling rate should be fixed at 64 samples per pixel and 1 samples per light. The number of bounces should be at least 5. Briefly discuss their difference.
+        </b></p>
+        <img src="images/cosine_hemisphere_sampling.png"  alt="bunny rendered with cosine hemisphere sampling">
+        <img src="images/importance_sampling.png"  alt="bunny rendered with importance sampling">
+        
+        <p>
+            The bunny rendered with importance sampling has much less noise than the one with cosine hemisphere sampling. This is expected since we are grabbing samples from more significant parts of the lighting, so even with less samples the lighting is more consistent. 
+        </p>
+        <br>
+        <p><b>
+            Show at least one image with some other conductor material, replacing `eta` and `k`. Note that you should look up values for real data rather than modifying them arbitrarily. Tell us what kind of material your parameters correspond to. 
+        </b></p>
+        <img src="images/silver.png"  alt="bunny rendered with silver multifaceting">
+        <p>
+            My parameters correspond to silver!
+        </p>
+        <br>
+        
+        
+        
+
+        <h3 align="middle">Part 3. Environment Lightl</h3>
+        <b>Pick one *.exr* file to use for all subparts here. Include a converted *.jpg* of it in your website so we know what map you are using.</b>
+        
+        <p><b>
+            In a few sentences, explain the ideas behind environment lighting (i.e. why we do it/how it works).
+        </b></p>
+        <p>
+            The idea behind environment lighting is to light the objects from a background. This is done by taking a texture and supplying it as incident radiance from all directions on the sphere. Because the enviroment lighting is treated as being infinitely far away, it appears as the background of the image. This allows us to paste images of a field or a building in the background of the image, and have the object's lighting reflect that without having to build the field or building as objects in the scene. Becuase they are treated instead as light sources, it is much simpler to get cool results.
+        </p>
+        <br>
+        <p><b>
+            Show the *probability_debug.png* file for the *.exr* file you are using, generated using the `save_probability_debug()` helper function after initializing your probability distributions.
+        </b></p>
+        <img src="images/doge.jpeg"  alt="doge jpeg file">
+        <img src="images/probability_debug.png"  alt="doge probability debug file">
+
+        <p>
+            The jpg and probability debug file from doge.exr
+        </p>
+        <br>
+        <p><b>
+            Use the `bunny_unlit.dae` scene and your environment map *.exr* file and render two pictures, one with uniform sampling and one with importance sampling. Use 4 samples per pixel and 64 samples per light in each. Compare noise levels. Make sure to include all screenshots.
+        </b></p>
+        <img src="images/uniform_sampling.png"  alt="unlit bunny rendered with uniform sampling">
+        <img src="images/importance_sampling_task3.png"  alt="unlit bunny rendered with importance sampling">
+
+        <p>
+            The image rendered with importance sampling has less noise than the one rendered with uniform sampling.
+        </p>
+        <br>
+        <p><b>
+            Use a different image (if you did part 2, we recommend `bunny_microfacet_cu_unlit.dae`) and your environment map *.exr* file and render two pictures, one with uniform sampling and one with importance sampling. Use 4 samples per pixel and 64 samples per light in each. Compare noise levels. Make sure to include all screenshots.
+        </b></p>
+        <img src="images/microfacet_uniform_sampling.png"  alt="unlit bunny rendered with uniform sampling">
+        <img src="images/microfacet_importance_sampling.png"  alt="unlit bunny rendered with importance sampling">
+        <p>
+            Once again, the image rendered with importance sampling has less noise than the one rendered with unifrom sampling. Additionally, like the previous picture, the uniform is much brighter than the importance sampled render. I believe this might be mistake in how I computed the sampling, though.
+        </p>
+        <br>
+
+
+    </div>
+</body>
 </html>
+
